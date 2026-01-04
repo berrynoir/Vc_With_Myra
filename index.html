@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Berry Noir Premium</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", Arial, sans-serif;
+        color: #3a0d3a;
+        overflow: hidden;
+    }
+
+    /* Background photo strip panning */
+    .bg-pan {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 200%;
+        height: 100%;
+        background-image: url('https://picsum.photos/800/1200?blur=3'),
+                          url('https://picsum.photos/900/1200?blur=2'),
+                          url('https://picsum.photos/850/1200?blur=4');
+        background-size: cover;
+        background-position: left center;
+        animation: pan 40s linear infinite;
+        filter: blur(2px);
+    }
+
+    @keyframes pan {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-25%); }
+    }
+
+    /* Soft pink overlay */
+    .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(255, 192, 203, 0.75);
+        backdrop-filter: blur(3px);
+    }
+
+    .content {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        padding: 40px 20px 70px;
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    h1 {
+        font-size: 26px;
+        line-height: 1.45;
+        margin: 0 auto 16px;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-size: 22px;
+        line-height: 1.5;
+        margin: 6px auto 24px;
+        font-weight: 600;
+    }
+
+    .highlight {
+        color: #b10f6e;
+        font-weight: 700;
+    }
+
+    .qr-box {
+        margin-top: 10px;
+        display: inline-block;
+        padding: 18px;
+        background: #ffffffdd;
+        border-radius: 18px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .qr-box img {
+        width: 240px;
+        height: 240px;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+
+    .note {
+        margin-top: 12px;
+        font-size: 14px;
+        color: #5a1a5a;
+    }
+
+    /* Snow breeze animation */
+    .snow {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9;
+    }
+
+    .snow span {
+        position: absolute;
+        top: -10px;
+        width: 6px;
+        height: 6px;
+        background: white;
+        border-radius: 50%;
+        opacity: 0.9;
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh) translateX(30px);
+            opacity: 0.2;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="bg-pan"></div>
+<div class="overlay"></div>
+
+<div class="snow" id="snow"></div>
+
+<div class="content">
+
+    <!-- English text -->
+    <h1>
+        To unlock <span class="highlight">15 minutes of Video Call</span> and
+        <span class="highlight">7 Days of One-on-One Chat</span><br>
+        Buy Premium of <span class="highlight">Berry Noir</span> and enjoy personal 1-on-1 connection
+    </h1>
+
+    <!-- Hindi text -->
+    <h2>
+        <span class="highlight">15 मिनट की वीडियो कॉल</span> और
+        <span class="highlight">7 दिनों की वन-ऑन-वन चैट</span> अनलॉक करने के लिए<br>
+        <span class="highlight">Berry Noir Premium खरीदें</span> और पाएं आपका निजी 1-on-1 कनेक्शन
+    </h2>
+
+    <!-- QR + UPI -->
+    <a href="upi://pay?pa=your-upi-id@upi&pn=Berry%20Noir&cu=INR"
+       target="_blank" rel="noopener">
+        <div class="qr-box">
+            <img src="your-qr-image.png" alt="Scan to Pay" />
+            <div class="note">Tap / Scan QR to Pay via Paytm or UPI</div>
+        </div>
+    </a>
+
+</div>
+
+<script>
+/* generate snow particles */
+const snow = document.getElementById("snow");
+for (let i = 0; i < 120; i++) {
+  const s = document.createElement("span");
+  const size = Math.random() * 6 + 2;
+  const duration = Math.random() * 6 + 4;
+  const delay = Math.random() * -6;
+
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.width = size + "px";
+  s.style.height = size + "px";
+  s.style.animationDuration = duration + "s";
+  s.style.animationDelay = delay + "s";
+
+  snow.appendChild(s);
+}
+</script>
+
+</body>
+</html>
